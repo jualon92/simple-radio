@@ -1,0 +1,19 @@
+ 
+
+.player-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.progress-bar {
+  flex: 1;
+}
+
+
+audio {
+  width: -webkit-fill-available;
+  width: -moz-available;
+  width: 100%;
+  margin: 10px 0;
+}
