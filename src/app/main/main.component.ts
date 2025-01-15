@@ -24,9 +24,9 @@ import { CommonModule } from '@angular/common';
   styleUrl: './main.component.scss'
 })
 export class MainComponent  {
-  flip = true;
+
   constructor(private audioService: AudioService) {
-    this.flip = true;
+
   }
 
   onPlay(event: Event, radioName: string) {
