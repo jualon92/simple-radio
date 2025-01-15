@@ -5,8 +5,10 @@
         <img mat-card-avatar src="/assets/images/rivadavia.webp" alt="Radio Rivadavia">
         <mat-card-title>Radio Rivadavia</mat-card-title>
       </mat-card-header>
-      <mat-card-content class="station-content">
-        <audio controls>
+     {{flip}}
+     
+      <mat-card-content class="station-content"  >
+        <audio controls (play)="onPlay($event, 'Radio Rivadavia')">
           <source src="https://playerservices.streamtheworld.com/api/livestream-redirect/RIVADAVIA.mp3">
         </audio>
       </mat-card-content>
@@ -24,7 +26,7 @@
         <mat-card-title>Radio Continental</mat-card-title>
       </mat-card-header>
       <mat-card-content class="station-content">
-        <audio controls>
+        <audio controls (play)="onPlay($event, 'Radio Continental')">
           <source src="https://frontend.radiohdvivo.com/continental/live">
         </audio>
       </mat-card-content>
@@ -39,7 +41,7 @@
         <mat-card-title>Radio Mitre</mat-card-title>
       </mat-card-header>
       <mat-card-content class="station-content">
-        <audio controls>
+        <audio controls (play)="onPlay($event, 'Radio Mitre')">
           <source src="https://playerservices.streamtheworld.com/api/livestream-redirect/AM790_56.mp3">
         </audio>
       </mat-card-content>
