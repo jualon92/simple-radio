@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
@@ -7,7 +7,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSliderModule } from '@angular/material/slider';
 import { AudioService } from '../audio-service.service';
 import { CommonModule } from '@angular/common';
-
+import { radioStations } from './radios';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 @Component({
   selector: 'app-main',
   standalone: true,
@@ -18,22 +20,43 @@ import { CommonModule } from '@angular/common';
     MatIconModule,
     MatButtonModule,
     MatSliderModule,
-    CommonModule
+    CommonModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule
   ],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss'
 })
-export class MainComponent  {
-
-  constructor(private audioService: AudioService) {
-
+export class MainComponent {
+  radioStations = radioStations;
+  public  currentRadio: string = '';
+  isStopping = false;
+  isLoadingRadio = false;
+  isLoading = false;
+  constructor(public audioService: AudioService) {
+    this.audioService.getCurrentRadio().subscribe(radio => {
+      this.currentRadio = radio;
+    });
+    this.audioService.loadingRadio.subscribe(loading => {
+      this.isLoadingRadio = loading; 
+    })
+   
   }
 
-  onPlay(event: Event, radioName: string) {
-    const audio = event.target as HTMLAudioElement;
-     
+  
+  togglePlay(event: Event, radioName: string) {
+    if (this.isPlaying(radioName)) {
+      this.audioService.stopRadio(radioName);
+    } else {
+      const station = this.radioStations.find(r => r.name === radioName);
+      if (station) {
+        this.audioService.loadingRadio.next(true)
+        this.audioService.playRadio(station.url, station.name);
+      }
+    }
+  }
 
-      this.audioService.playRadio(audio, radioName);
-     
+  isPlaying(radioName: string): boolean {
+    return this.currentRadio === radioName;
   }
 }

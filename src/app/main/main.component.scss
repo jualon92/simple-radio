@@ -10,10 +10,76 @@
   flex: 1;
 }
 
+.now-playing {
+  &.loading {
+    animation: spin 2s linear infinite;
+  }
+}
 
+@keyframes spin {
+  100% { 
+    transform: rotate(360deg);
+  }
+}
 audio {
   width: -webkit-fill-available;
   width: -moz-available;
   width: 100%;
   margin: 10px 0;
+}
+
+.station-content {
+  padding: 16px;
+  
+  .station-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .play-button {
+    width: 64px;
+    height: 64px;
+    
+    .mat-icon {
+      font-size: 32px;
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  .now-playing {
+    color: #1db954;
+    animation: pulse 1.5s infinite;
+  }
+}
+
+@keyframes pulse {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+
+.now-playing {
+  color: #1db954;
+  font-size: 46px;
+  width: 46px;
+  height: 46px;
+  animation: pulseAndScale 2.5s ease-in-out infinite;
+  margin-right: 16px;
+}
+
+@keyframes pulseAndScale {
+  0% { 
+    opacity: 0.7;
+    transform: scale(0.95);
+  }
+  50% { 
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  100% { 
+    opacity: 0.7;
+    transform: scale(0.95);
+  }
 }
