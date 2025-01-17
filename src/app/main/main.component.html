@@ -1,16 +1,16 @@
 <mat-list>
   <mat-list-item *ngFor="let station of radioStations" lines="4">
-    <mat-card class="station-card">
+    <mat-card class="station-card" (click)="togglePlay($event, station.name)">
       <mat-card-header>
         <img mat-card-avatar [src]="station.image" [alt]="station.name">
         <mat-card-title>{{station.name}}</mat-card-title>
       </mat-card-header>
     
-      <mat-card-content class="station-content">
+      <mat-card-content class="station-content" >
         <div class="station-controls">
-          <button style="margin-right: 1.5em;" mat-fab class="play-button" (click)="togglePlay($event, station.name)">
+         <!--  <button style="margin-right: 1.5em;" mat-fab class="play-button" (click)="togglePlay($event, station.name)">
             <mat-icon>{{isPlaying(station.name) ? 'pause' : 'play_arrow'}}</mat-icon>
-          </button>
+          </button> -->
          
   <!-- 
           <mat-spinner *ngIf="isLoadingRadio && this.currentRadio === station.name"/>  -->
