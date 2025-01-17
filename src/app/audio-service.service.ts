@@ -11,6 +11,7 @@ export class AudioService {
   private sounds: Map<string, Howl | null> = new Map();
   public loadingRadio = new  Subject<boolean>();
   private currentRadio = new BehaviorSubject<string>('');
+  public showFooter = new BehaviorSubject<boolean>(false);
   constructor() {
     // Precarga inicial de radios
     this.preloadRadios();
@@ -64,6 +65,7 @@ export class AudioService {
         newSound.play();
         this.currentRadio.next(radioName);
       }
+      this.showFooter.next(true)
     // if radio the same
     
   }
@@ -73,6 +75,9 @@ export class AudioService {
     if (newSound) {
       newSound.stop();
       this.currentRadio.next('');  
+      
     }
+    this.showFooter.next(false)
+
   }
 }

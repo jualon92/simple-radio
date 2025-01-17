@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 import { radioStations } from './radios';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { BehaviorSubject, Observable } from 'rxjs';
 @Component({
   selector: 'app-main',
   standalone: true,
@@ -40,6 +41,7 @@ export class MainComponent {
     this.audioService.loadingRadio.subscribe(loading => {
       this.isLoadingRadio = loading; 
     })
+    this.audioService.showFooter 
    
   }
 
@@ -56,7 +58,24 @@ export class MainComponent {
     }
   }
 
+  togglePlayFooter(event: Event, radioName: string) {
+    if (this.isPlaying(radioName)) {
+      this.audioService.stopRadio(radioName);
+    } else {
+      const station = this.radioStations.find(r => r.name === radioName);
+      if (station) {
+        this.audioService.loadingRadio.next(true)
+        this.audioService.playRadio(station.url, station.name);
+        
+      }
+    }
+  }
+
   isPlaying(radioName: string): boolean {
     return this.currentRadio === radioName;
+  }
+
+  getCurrentStation() {
+    return this.radioStations.find(station => station.name === this.currentRadio);
   }
 }

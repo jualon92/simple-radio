@@ -168,3 +168,54 @@ audio {
 .mat-mdc-card-content{
   padding-top:10px;
 }
+
+
+.player-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #1e1e1e;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #333;
+  z-index: 1000;
+  animation: slideUp 0.3s ease-out;
+  .player-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    .player-image {
+      width: 60px;
+      height: 60px;
+      border-radius: 4px;
+    }
+
+    .player-details {
+      h3 {
+        margin: 0;
+        color: white;
+      }
+      p {
+        margin: 4px 0 0;
+        color: #888;
+      }
+    }
+  }
+}
+
+
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

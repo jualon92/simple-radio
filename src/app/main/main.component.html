@@ -25,3 +25,18 @@
     </mat-card>
   </mat-list-item>
 </mat-list>
+
+
+
+<div class="player-footer" *ngIf=" this.audioService.showFooter  | async ">
+  <div class="player-info">
+    <img [src]="getCurrentStation()?.image" [alt]="currentRadio" class="player-image">
+    <div class="player-details">
+      <h3>{{currentRadio}}</h3>
+      <p>{{getCurrentStation()?.frequency}}</p>
+    </div>
+  </div>
+  <button mat-fab color="primary" (click)="togglePlayFooter($event, currentRadio)">
+    <mat-icon>{{isPlaying(currentRadio) ? 'pause' : 'play_arrow'}}</mat-icon>
+  </button>
+</div>
