@@ -61,12 +61,15 @@ audio {
 }
 
 .now-playing {
+  position: relative;
+     left: -8px;
+    top: 46px;
   color: #1db954;
   font-size: 46px;
   width: 46px;
   height: 46px;
-  animation: pulseAndScale 2.5s ease-in-out infinite;
-  margin-right: 16px;
+ /*  animation: pulseAndScale 2.5s ease-in-out infinite; */
+ /*  margin-right: 16px; */
 }
 
 @keyframes pulseAndScale {
@@ -82,4 +85,86 @@ audio {
     opacity: 0.7;
     transform: scale(0.95);
   }
+}
+
+.station-card {
+  mat-card-header {
+    
+    img[mat-card-avatar] {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 16px;
+      margin-top: 20px;
+    }
+
+  /*   mat-card-title {
+      font-size: 20px;
+      line-height: 64px;
+    } */
+  }
+}
+
+.station-header{
+  align-items: center;
+}
+
+.progress-container {
+  height: 4px;  // Altura fija de mat-progress-bar
+  margin: 8px 0;
+  
+  mat-progress-bar {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    
+    &.visible {
+      opacity: 1;
+    }
+  }
+}
+
+.station-card {
+  background-color: #121212; // Negro base Material Dark
+  transition: all 0.3s ease;
+  
+  &:active {
+    background-color: #1f1f1f; // Gris muy oscuro para feedback táctil
+  }
+  
+  &.playing {
+    background-color: #2d2d2d; // Gris oscuro para selección
+    border-left: 12px solid #BB86FC; // Color secundario Material Dark
+    box-shadow: 0 0 15px rgba(187, 134, 252, 0.1); // Brillo sutil del color secundario
+  }
+}
+ 
+ 
+.live-badge {
+  background-color: #d32f2f;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+  position: absolute;
+  right: 16px;
+  top: 99px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.mat-mdc-card-content{
+  padding-top:10px;
 }
