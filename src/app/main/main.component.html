@@ -1,9 +1,12 @@
 <mat-list>
   <mat-list-item *ngFor="let station of radioStations" lines="4">
-    <mat-card class="station-card" (click)="togglePlay($event, station.name)">
-      <mat-card-header>
+    <mat-card class="station-card"   [class.playing]="isPlaying(station.name)" (click)="togglePlay($event, station.name)">
+      <mat-card-header class="station-header">
         <img mat-card-avatar [src]="station.image" [alt]="station.name">
-        <mat-card-title>{{station.name}}</mat-card-title>
+        <mat-card-title> <h3>{{station.name}} </h3> </mat-card-title>
+        <mat-card-subtitle><h4>{{station.frequency}}</h4> </mat-card-subtitle>
+        <span *ngIf="this.currentRadio === station.name && isLoadingRadio === false" class="live-badge">EN VIVO</span>
+        
       </mat-card-header>
     
       <mat-card-content class="station-content" >
@@ -14,9 +17,9 @@
          
   <!-- 
           <mat-spinner *ngIf="isLoadingRadio && this.currentRadio === station.name"/>  -->
-          <mat-progress-bar  *ngIf="isLoadingRadio && this.currentRadio === station.name" mode="buffer"></mat-progress-bar>
-          <mat-icon *ngIf="!isLoadingRadio && isPlaying(station.name)" class="now-playing">equalizer</mat-icon>
-         
+          <mat-progress-bar   [style.visibility]="isLoadingRadio && this.currentRadio === station.name ? 'visible' : 'hidden'" mode="buffer"></mat-progress-bar>
+       
+       
         </div>
       </mat-card-content>
     </mat-card>
