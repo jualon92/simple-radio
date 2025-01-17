@@ -41,7 +41,7 @@ export class MainComponent {
     this.audioService.loadingRadio.subscribe(loading => {
       this.isLoadingRadio = loading; 
     })
-    this.audioService.showFooter 
+     
    
   }
 

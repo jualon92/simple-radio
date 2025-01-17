@@ -3,8 +3,8 @@
     <mat-card class="station-card"   [class.playing]="isPlaying(station.name)" (click)="togglePlay($event, station.name)">
       <mat-card-header class="station-header">
         <img mat-card-avatar [src]="station.image" [alt]="station.name">
-        <mat-card-title> <h3>{{station.name}} </h3> </mat-card-title>
-        <mat-card-subtitle><h4>{{station.frequency}}</h4> </mat-card-subtitle>
+        <mat-card-title> <h5>{{station.name}} </h5> </mat-card-title>
+        <mat-card-subtitle><h6>{{station.frequency}}</h6> </mat-card-subtitle>
         <span *ngIf="this.currentRadio === station.name && isLoadingRadio === false" class="live-badge">EN VIVO</span>
         
       </mat-card-header>

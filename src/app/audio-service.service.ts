@@ -47,7 +47,13 @@ export class AudioService {
     });
 
   }
-  
+  toggleMute(muted: boolean) {
+    this.sounds.forEach((sound) => {
+      if (sound) {
+        sound.mute(muted);
+      }
+    });
+  }
   playRadio(radioUrl: string, radioName: string) {
  
       // Si hay otra radio sonando, pausarla

@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { AudioService } from '../audio-service.service';
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -10,5 +11,14 @@ import {MatToolbarModule} from '@angular/material/toolbar';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
+  isMuted = false;
+
+  constructor(private audioService: AudioService) {}
+
+  toggleMute() {
+    this.isMuted = !this.isMuted;
+    this.audioService.toggleMute(this.isMuted);
+  }
+
 
 }

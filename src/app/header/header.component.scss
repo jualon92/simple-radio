@@ -1,3 +1,23 @@
 .example-spacer {
   flex: 1 1 auto;
 }
+
+mat-toolbar {
+  button[aria-label="Toggle mute"] {
+    .mat-icon {
+      /* font-size: 32px;
+      width: 36px;
+      height: 36px;
+      line-height: 32px; */
+       scale:1.5;
+    }
+  }
+}
+
+.mute-button {
+  &.muted {
+    color: #f44336;
+    
+     
+  }
+}
