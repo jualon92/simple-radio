@@ -12,6 +12,7 @@ export class AudioService {
   public loadingRadio = new  Subject<boolean>();
   private currentRadio = new BehaviorSubject<string>('');
   public showFooter = new BehaviorSubject<boolean>(false);
+  public isStopped = new BehaviorSubject<boolean>(false);
   constructor() {
     // Precarga inicial de radios
     this.preloadRadios();
@@ -70,8 +71,10 @@ export class AudioService {
       if (newSound) {
         newSound.play();
         this.currentRadio.next(radioName);
+        
       }
       this.showFooter.next(true)
+      
     // if radio the same
     
   }
@@ -84,6 +87,17 @@ export class AudioService {
       
     }
     this.showFooter.next(false)
+
+  }
+
+  stopRadioFooter(radioName: string) {
+    const newSound = this.sounds.get(radioName); 
+    if (newSound) {
+      newSound.stop();
+     
+      
+    }
+    
 
   }
 }

@@ -5,8 +5,8 @@
         <img mat-card-avatar [src]="station.image" [alt]="station.name">
         <mat-card-title> <h5>{{station.name}} </h5> </mat-card-title>
         <mat-card-subtitle><h6>{{station.frequency}}</h6> </mat-card-subtitle>
-        <span *ngIf="this.currentRadio === station.name && isLoadingRadio === false" class="live-badge">EN VIVO</span>
-        
+        <span *ngIf="this.currentRadio === station.name  " class="live-badge">EN VIVO</span>
+
       </mat-card-header>
     
       <mat-card-content class="station-content" >
@@ -35,8 +35,8 @@
       <h3>{{currentRadio}}</h3>
       <p>{{getCurrentStation()?.frequency}}</p>
     </div>
-  </div>
+  </div> 
   <button mat-fab color="primary" (click)="togglePlayFooter($event, currentRadio)">
-    <mat-icon>{{isPlaying(currentRadio) ? 'pause' : 'play_arrow'}}</mat-icon>
+    <mat-icon>{{!(this.audioService.isStopped | async) ? 'pause' : 'play_arrow'}}</mat-icon>
   </button>
 </div>

@@ -48,27 +48,33 @@ export class MainComponent {
   
   togglePlay(event: Event, radioName: string) {
     if (this.isPlaying(radioName)) {
+
       this.audioService.stopRadio(radioName);
     } else {
-      const station = this.radioStations.find(r => r.name === radioName);
-      if (station) {
-        this.audioService.loadingRadio.next(true)
-        this.audioService.playRadio(station.url, station.name);
-      }
+      this.audioService.isStopped.next(false);
+      this.playRadio(radioName);
     }
   }
 
-  togglePlayFooter(event: Event, radioName: string) {
-    if (this.isPlaying(radioName)) {
-      this.audioService.stopRadio(radioName);
-    } else {
-      const station = this.radioStations.find(r => r.name === radioName);
-      if (station) {
-        this.audioService.loadingRadio.next(true)
-        this.audioService.playRadio(station.url, station.name);
-        
-      }
+  playRadio(radioName: string) {
+    const station = this.radioStations.find(r => r.name === radioName);
+    if (station) {
+      this.audioService.loadingRadio.next(true)
+   
+      this.audioService.playRadio(station.url, station.name);
     }
+  }
+  togglePlayFooter(event: Event, radioName: string) {
+
+   if (!this.audioService.isStopped.value) {
+    //stop radio
+    this.audioService.loadingRadio.next(false);
+    this.audioService.stopRadioFooter(radioName);
+  }else {
+    this.playRadio(radioName);
+  }
+
+  this.audioService.isStopped.next(!this.audioService.isStopped.value);
   }
 
   isPlaying(radioName: string): boolean {
