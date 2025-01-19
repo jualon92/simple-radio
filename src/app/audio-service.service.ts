@@ -8,7 +8,6 @@ import { radioStations } from './main/radios';
 })
 export class AudioService {
   private sound: Howl | null = null;
-  private sounds: Map<string, Howl | null> = new Map();
   public isLoading = new  BehaviorSubject<string>('');
   private currentRadio = new BehaviorSubject<string>('');
   public showFooter = new BehaviorSubject<boolean>(false);
@@ -23,12 +22,9 @@ export class AudioService {
 
  
   toggleMute(muted: boolean) {
-    this.sounds.forEach((sound) => {
-      if (sound) {
-        sound.mute(muted);
-      }
-    });
+    this.sound?.mute(muted);
   }
+
   playRadio(radioUrl: string) {
     
     if (this.sound) {
