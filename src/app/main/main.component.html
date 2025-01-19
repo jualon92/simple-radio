@@ -49,7 +49,7 @@
         *ngIf="!station.isFooterStopped && ((audioService.isLoading | async) !== station.url )">
         <mat-icon>pause</mat-icon>
       </button>
-      <button mat-fab color="primary" (click)="playRadioFromFooter(station)"
+      <button mat-fab color="primary" 
         *ngIf="((audioService.isLoading | async) === station.url )">
         <mat-icon disabled class="rotating-icon">sync</mat-icon>
       </button>
