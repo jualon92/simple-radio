@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, ViewChild } from '@angular/core';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
@@ -25,6 +25,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
     MatProgressSpinnerModule,
     MatProgressBarModule
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss'
 })
@@ -68,5 +69,6 @@ export class MainComponent {
     station.isFooterStopped = true;
     this.audioService.stopRadio(station.url);
   }
+  
 
 }
