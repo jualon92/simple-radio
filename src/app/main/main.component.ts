@@ -42,7 +42,7 @@ export class MainComponent {
     //changeUI
     station.isSelected = !station.isSelected ;
     this.unselectAllOtherStations(station);
-
+  
 
     //play or stop radio
     station.isSelected ?   this.audioService.playRadio(station.url) : this.audioService.stopRadio(station.url);
@@ -55,6 +55,7 @@ export class MainComponent {
       if (s.name !== selectedStation.name){
         s.isSelected = false;
       }
+      s.isFooterStopped = false;
     });
   }
 

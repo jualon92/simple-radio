@@ -38,8 +38,10 @@
         </div>
       </div>
       <button mat-fab color="primary">
-        <mat-icon (click)="playRadioFromFooter(station)" *ngIf="station.isFooterStopped && ((audioService.isLoading | async) !== station.url )">play_arrow</mat-icon>
+         <!-- instead of using isFotterStopped property, prefer using audioService.isPlaying  -->
 
+        <mat-icon (click)="playRadioFromFooter(station)" *ngIf="station.isFooterStopped && ((audioService.isLoading | async) !== station.url )">play_arrow</mat-icon>
+        
         <mat-icon *ngIf="!station.isFooterStopped && ((audioService.isLoading | async) !== station.url )"
           (click)="stopRadioFooter(station)">pause</mat-icon>
 
