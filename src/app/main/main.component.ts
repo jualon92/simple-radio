@@ -7,7 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSliderModule } from '@angular/material/slider';
 import { AudioService } from '../audio-service.service';
 import { CommonModule } from '@angular/common';
-import { radioStations } from './radios';
+import { radioStations, Station } from './radios';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -29,50 +29,46 @@ import { BehaviorSubject, Observable } from 'rxjs';
   styleUrl: './main.component.scss'
 })
 export class MainComponent {
-  radioStations = radioStations;
+  radioStations =[...radioStations];
   public  currentRadio: string = '';
-  isStopping = false;
-  isLoadingRadio = false;
+  isStopping = false; 
   isLoading = false;
   constructor(public audioService: AudioService) {
-    this.audioService.getCurrentRadio().subscribe(radio => {
+   /*  this.audioService.getCurrentRadio().subscribe(radio => {
       this.currentRadio = radio;
     });
     this.audioService.loadingRadio.subscribe(loading => {
       this.isLoadingRadio = loading; 
-    })
+    }) */
+     
      
    
   }
 
   
-  togglePlay(event: Event, radioName: string) {
-    if (this.isPlaying(radioName)) {
+  togglePlay(station: Station) {
+    
+    //changeUI
+    station.isSelected = !station.isSelected ;
+    this.unselectAllOtherStations(station);
 
-      this.audioService.stopRadio(radioName);
-    } else {
-      this.audioService.isStopped.next(false);
-      this.playRadio(radioName);
-    }
+
+    //play or stop radio
+    station.isSelected ?   this.audioService.playRadio(station.url) : this.audioService.stopRadio(station.url);
+    
   }
 
-  playRadio(radioName: string) {
-    const station = this.radioStations.find(r => r.name === radioName);
-    if (station) {
-      this.audioService.loadingRadio.next(true)
-   
-      this.audioService.playRadio(station.url, station.name);
-    }
+
+  private unselectAllOtherStations(selectedStation: Station) {
+    this.radioStations.forEach(s => {
+      if (s.name !== selectedStation.name){
+        s.isSelected = false;
+      }
+    });
   }
+
   togglePlayFooter(event: Event, radioName: string) {
-
-   if (!this.audioService.isStopped.value) {
-    //stop radio
-    this.audioService.loadingRadio.next(false);
-    this.audioService.stopRadioFooter(radioName);
-  }else {
-    this.playRadio(radioName);
-  }
+ 
 
   this.audioService.isStopped.next(!this.audioService.isStopped.value);
   }
