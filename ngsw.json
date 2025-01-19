@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1737232529837,
+  "timestamp": 1737262671245,
   "index": "/simple-radio/index.html",
   "assetGroups": [
     {
@@ -49,7 +49,7 @@
   "hashTable": {
     "/simple-radio/assets/images/continental.webp": "dcd749f3122e854083289d4448ac95c56f10a667",
     "/simple-radio/assets/images/mitre.webp": "865326b48ab0e0e7a0524f7ea506244b68f5dfcc",
-    "/simple-radio/assets/images/rivadavia.webp": "e3b80a4a3f8d222235f2d9dc96a013914139d431",
+    "/simple-radio/assets/images/rivadavia.webp": "848ca8976f6d1bd7faefb95a495bec57a39f2a2e",
     "/simple-radio/chunk-A4P4QPHA.js": "7615f7e3517c6b2a96246f66bdc13d93875aebc0",
     "/simple-radio/chunk-IJ7NJKHM.js": "6a09714f288fbf28af715a8c626daf9bed34d977",
     "/simple-radio/favicon.ico": "9c39f434fe1261f68c5e3eefdf734630d99c5670",
