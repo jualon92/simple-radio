@@ -3,7 +3,7 @@
     <mat-card class="station-card" [class.playing]="station.isSelected" (click)="togglePlay(station)">
       <mat-card-header class="station-header">
         <img mat-card-avatar [src]="station.image" [alt]="station.name">
-        <mat-card-title     style="white-space: break-spaces;">
+        <mat-card-title style="white-space: break-spaces;">
           <h5>{{station.name}} </h5>
         </mat-card-title>
         <mat-card-subtitle>
@@ -37,16 +37,20 @@
           <h6>{{station.frequency}}</h6>
         </div>
       </div>
-      <button mat-fab color="primary">
-         <!-- instead of using isFotterStopped property, prefer using audioService.isPlaying  -->
+      <button mat-fab color="primary" (click)="playRadioFromFooter(station)"
+        *ngIf="station.isFooterStopped && ((audioService.isLoading | async) !== station.url )">
+        <!-- instead of using isFotterStopped property, prefer using audioService.isPlaying  -->
 
-        <mat-icon (click)="playRadioFromFooter(station)" *ngIf="station.isFooterStopped && ((audioService.isLoading | async) !== station.url )">play_arrow</mat-icon>
-        
-        <mat-icon *ngIf="!station.isFooterStopped && ((audioService.isLoading | async) !== station.url )"
-          (click)="stopRadioFooter(station)">pause</mat-icon>
+        <mat-icon>play_arrow</mat-icon>
+      </button>
 
-        <mat-icon disabled (click)="playRadioFromFooter(station)" class="rotating-icon"
-          *ngIf="((audioService.isLoading | async) === station.url )">sync</mat-icon>
+      <button mat-fab color="primary" (click)="stopRadioFooter(station)"
+        *ngIf="!station.isFooterStopped && ((audioService.isLoading | async) !== station.url )">
+        <mat-icon>pause</mat-icon>
+      </button>
+      <button mat-fab color="primary" (click)="playRadioFromFooter(station)"
+        *ngIf="((audioService.isLoading | async) === station.url )">
+        <mat-icon disabled class="rotating-icon">sync</mat-icon>
       </button>
     </div>
   </mat-list-item>
