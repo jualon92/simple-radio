@@ -37,10 +37,11 @@
           <h6>{{station.frequency}}</h6>
         </div>
       </div>
+              <!-- instead of using isFotterStopped property, prefer using audioService.isPlaying  -->
+
       <button mat-fab color="primary" (click)="playRadioFromFooter(station)"
         *ngIf="station.isFooterStopped && ((audioService.isLoading | async) !== station.url )">
-        <!-- instead of using isFotterStopped property, prefer using audioService.isPlaying  -->
-
+ 
         <mat-icon>play_arrow</mat-icon>
       </button>
 
