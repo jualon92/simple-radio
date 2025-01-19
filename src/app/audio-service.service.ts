@@ -4,51 +4,46 @@ import { Howl } from 'howler';
 import { radioStations } from './main/radios';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AudioService {
-  private sound: Howl | null = null;
-  public isLoading = new  BehaviorSubject<string>('');
-  private currentRadio = new BehaviorSubject<string>('');
-  public showFooter = new BehaviorSubject<boolean>(false);
-  public isStopped = new BehaviorSubject<boolean>(false);
-  constructor() {
-  
-  }
+  public sound: Howl | null = null;
+  public isLoading = new BehaviorSubject<string>('');
+  public isPlaying = new BehaviorSubject<string>('');
+  constructor() {}
 
-  getCurrentRadio() {
-    return this.currentRadio.asObservable();
-  }
 
- 
+
   toggleMute(muted: boolean) {
     this.sound?.mute(muted);
   }
 
   playRadio(radioUrl: string) {
-    
     if (this.sound) {
       this.sound.unload(); // Limpia completamente la instancia anterior
     }
 
     // Crear nueva instancia limpia
-    this.isLoading.next(radioUrl)
-    this.sound = new Howl({
+    this.isLoading.next(radioUrl);
+    this.sound = new Howl(this.getHowlParams(radioUrl));
+
+    this.sound.play();
+  }
+
+  getHowlParams(radioUrl: string) {
+    return {
       src: [radioUrl],
       html5: true,
-      format: ['webm','mp3'],
+      format: ['webm', 'mp3'],
       onload: () => {
-        this.isLoading.next("")
-      }
-    });
-
-    
-    this.sound.play();
-    
+        this.isLoading.next('');
+        this.isPlaying.next(radioUrl)
+      },
+    };
   }
 
   stopRadio(radioName: string) {
-    this.sound?.stop(); 
+    this.sound?.stop();
+    this.isPlaying.next('');
   }
- 
 }

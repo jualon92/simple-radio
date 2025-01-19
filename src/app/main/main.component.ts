@@ -14,8 +14,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports: [ 
-    MatSlideToggleModule, 
+  imports: [
+    MatSlideToggleModule,
     MatListModule,
     MatCardModule,
     MatIconModule,
@@ -30,24 +30,15 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class MainComponent {
   radioStations =[...radioStations];
-  public  currentRadio: string = '';
-  isStopping = false; 
-  isLoading = false;
+
   constructor(public audioService: AudioService) {
-   /*  this.audioService.getCurrentRadio().subscribe(radio => {
-      this.currentRadio = radio;
-    });
-    this.audioService.loadingRadio.subscribe(loading => {
-      this.isLoadingRadio = loading; 
-    }) */
-     
-     
-   
+
+
   }
 
-  
+
   togglePlay(station: Station) {
-    
+
     //changeUI
     station.isSelected = !station.isSelected ;
     this.unselectAllOtherStations(station);
@@ -55,7 +46,7 @@ export class MainComponent {
 
     //play or stop radio
     station.isSelected ?   this.audioService.playRadio(station.url) : this.audioService.stopRadio(station.url);
-    
+
   }
 
 
@@ -67,17 +58,14 @@ export class MainComponent {
     });
   }
 
-  togglePlayFooter(event: Event, radioName: string) {
- 
-
-  this.audioService.isStopped.next(!this.audioService.isStopped.value);
+  playRadioFromFooter(station: Station){
+    station.isFooterStopped = false;
+    this.audioService.playRadio(station.url);
   }
 
-  isPlaying(radioName: string): boolean {
-    return this.currentRadio === radioName;
+  stopRadioFooter(station: Station){
+    station.isFooterStopped = true;
+    this.audioService.stopRadio(station.url);
   }
 
-  getCurrentStation() {
-    return this.radioStations.find(station => station.name === this.currentRadio);
-  }
 }

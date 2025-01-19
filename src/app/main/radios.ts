@@ -6,6 +6,7 @@ export interface Station {
   image: string;
   isSelected: boolean;
   isLoading: boolean;
+  isFooterStopped:boolean;
 }
 
 export const radioStations: Station[] = [
@@ -16,6 +17,7 @@ export const radioStations: Station[] = [
     image: './assets/images/rivadavia.webp',
     isSelected: false,
     isLoading: false,
+    isFooterStopped:false,
   },
   {
     name: 'Radio Continental',
@@ -24,6 +26,7 @@ export const radioStations: Station[] = [
     image: './assets/images/continental.webp',
     isSelected: false,
     isLoading: false,
+    isFooterStopped:false,
   },
   {
     name: 'Radio Mitre',
@@ -32,5 +35,6 @@ export const radioStations: Station[] = [
     image: './assets/images/mitre.webp',
     isSelected: false,
     isLoading: false,
+    isFooterStopped:false,
   }
 ];
