@@ -5,15 +5,15 @@
   </button>
   <span>Simple Radio</span>
   <span class="example-spacer"></span>
+  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon"   [class.favorite]="isFavorite" 
+   (click)="toggleFavorite()">
+    <mat-icon>favorite</mat-icon>
+  </button>
   <button style="margin-bottom: 5px; 
   
       margin-right: 10px;"  class="mute-button"  [class.muted]="isMuted" mat-icon-button (click)="toggleMute()" aria-label="Toggle mute">
     <mat-icon>{{isMuted ? 'volume_off' : 'volume_up'}}</mat-icon>
   </button>
- <!--  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-    <mat-icon>favorite</mat-icon>
-  </button>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-    <mat-icon>share</mat-icon>
-  </button> -->
+    
+  
 </mat-toolbar>

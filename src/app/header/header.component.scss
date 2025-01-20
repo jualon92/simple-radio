@@ -21,3 +21,19 @@ mat-toolbar {
      
   }
 }
+
+.favorite {
+  color: #1976d2;
+}
+
+.favorite-button {
+  margin-right: 10px;
+  
+  &.favorite {
+    color: #1976d2;
+  }
+  
+  mat-icon {
+    transition: color 0.3s ease;
+  }
+}
