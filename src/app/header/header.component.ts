@@ -27,4 +27,7 @@ export class HeaderComponent {
   }
 
 
+  closeApp() {
+    window.close();
+  }
 }
