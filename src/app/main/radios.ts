@@ -72,7 +72,19 @@ export const radioStations: Station[] = [
     isSelected: false,
     isLoading: false,
     isFooterStopped:false,
-  }/* , {
+  }, 
+  {
+    name: "Radio La Red",
+    frequency: "AM 910",
+    url: "https://playerservices.streamtheworld.com/api/livestream-redirect/LA_RED_AM910.mp3",
+    image: "./assets/images/lared.png",
+    isSelected: false,
+    isLoading: false,
+    isFooterStopped:false,
+
+  }
+  
+  /* , {
     name: "Radio One",
     frequency: "FM 103.7",
     url: "https://playerservices.streamtheworld.com/api/livestream-redirect/ONE_SC",
