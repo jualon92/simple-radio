@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1737334497055,
+  "timestamp": 1737334864121,
   "index": "/simple-radio/index.html",
   "assetGroups": [
     {
@@ -58,7 +58,7 @@
     "/simple-radio/assets/images/rivadavia.webp": "848ca8976f6d1bd7faefb95a495bec57a39f2a2e",
     "/simple-radio/chunk-A4P4QPHA.js": "7615f7e3517c6b2a96246f66bdc13d93875aebc0",
     "/simple-radio/chunk-IJ7NJKHM.js": "6a09714f288fbf28af715a8c626daf9bed34d977",
-    "/simple-radio/favicon.ico": "9c39f434fe1261f68c5e3eefdf734630d99c5670",
+    "/simple-radio/favicon.ico": "3a42a4fe4d311da72564a47c0de6b93ef2da4af1",
     "/simple-radio/icons/icon-144-144.png": "5daf3e2b706b90957810c8c7eefddc1c5a451336",
     "/simple-radio/icons/icon-192-192.png": "237149072d59c9292d06cef1ad1fa1f88eaeac71",
     "/simple-radio/icons/icon-48-48.png": "79a7739ce079effd30aff4c0716a2b3b4171f6c0",
