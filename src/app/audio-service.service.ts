@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { Howl } from 'howler';
 import { radioStations } from './main/radios';
+import { AudioStrategy } from './models';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AudioService {
+export class AudioService implements AudioStrategy {
   public sound: Howl | null = null;
   public isLoading = new BehaviorSubject<string>('');
   public isPlaying = new BehaviorSubject<string>('');
@@ -21,6 +22,7 @@ export class AudioService {
   playRadio(radioUrl: string) {
     if (this.sound) {
       this.sound.unload(); // Limpia completamente la instancia anterior
+
     }
 
     // Crear nueva instancia limpia

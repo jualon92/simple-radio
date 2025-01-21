@@ -11,6 +11,9 @@ import { radioStations, Station } from './radios';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { BehaviorSubject, Observable } from 'rxjs';
+import Hls from 'hls.js';
+import { HslService } from '../hsl.service';
+
 @Component({
   selector: 'app-main',
   standalone: true,
@@ -32,25 +35,48 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class MainComponent {
   radioStations =[...radioStations];
 
-  constructor(public audioService: AudioService) {
+  constructor(public audioService: AudioService, private hslService: HslService) {
 
 
   }
-
+ 
+ 
 
   togglePlay(station: Station) {
+      
 
+    this.handleUIChanges(station)
+    
+    //handle radio play
+    this.stopPreviousRadio(station);
+    this.playNewRadio(station);
+     
+    
+  }
+
+  playNewRadio(station: Station){
+    
+    const service  =  this.getAudioService(station)
+    if (station.isSelected) {
+      service.playRadio(station.url);
+    }
+  }
+
+  stopPreviousRadio(station: Station){
+    this.hslService.stopRadio(station.url);
+    this.audioService.stopRadio(station.url);
+  }
+  getAudioService(station: Station): AudioService | HslService {
+    return station.isHSL ? this.hslService : this.audioService
+    
+
+  }
+
+  handleUIChanges(station: Station){
     //changeUI
     station.isSelected = !station.isSelected ;
     this.unselectAllOtherStations(station);
-  
-
-    //play or stop radio
-    station.isSelected ?   this.audioService.playRadio(station.url) : this.audioService.stopRadio(station.url);
-
   }
-
-
   private unselectAllOtherStations(selectedStation: Station) {
     this.radioStations.forEach(s => {
       if (s.name !== selectedStation.name){
@@ -62,12 +88,13 @@ export class MainComponent {
 
   playRadioFromFooter(station: Station){
     station.isFooterStopped = false;
-    this.audioService.playRadio(station.url);
+    this.getAudioService(station).playRadio(station.url);
   }
 
   stopRadioFooter(station: Station){
     station.isFooterStopped = true;
-    this.audioService.stopRadio(station.url);
+
+    this.getAudioService(station).stopRadio(station.url);
   }
   
 

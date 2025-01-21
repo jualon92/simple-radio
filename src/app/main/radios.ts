@@ -7,6 +7,7 @@ export interface Station {
   isSelected: boolean;
   isLoading: boolean;
   isFooterStopped:boolean;
+  isHSL: boolean;
 }
 
 export const radioStations: Station[] = [
@@ -18,6 +19,7 @@ export const radioStations: Station[] = [
     isSelected: false,
     isLoading: false,
     isFooterStopped:false,
+    isHSL: false,
   },
   {
     name: 'Radio Continental',
@@ -27,6 +29,7 @@ export const radioStations: Station[] = [
     isSelected: false,
     isLoading: false,
     isFooterStopped:false,
+    isHSL: false,
   },
   {
     name: 'Radio Mitre',
@@ -36,6 +39,7 @@ export const radioStations: Station[] = [
     isSelected: false,
     isLoading: false,
     isFooterStopped:false,
+    isHSL: false,
   },
   {
     name: "Radio La 100",
@@ -45,6 +49,7 @@ export const radioStations: Station[] = [
     isSelected: false,
     isLoading: false,
     isFooterStopped:false,
+    isHSL: false,
   },
   {
     name: "Radio Pop",
@@ -54,6 +59,7 @@ export const radioStations: Station[] = [
     isSelected: false,
     isLoading: false,
     isFooterStopped:false,
+    isHSL: false,
 
   },{
     name: "Radio Aspen",
@@ -63,6 +69,7 @@ export const radioStations: Station[] = [
     isSelected: false,
     isLoading: false,
     isFooterStopped:false,
+    isHSL: false, 
   },
   {
     name: "Radio Metro",
@@ -72,6 +79,7 @@ export const radioStations: Station[] = [
     isSelected: false,
     isLoading: false,
     isFooterStopped:false,
+    isHSL: false,
   }, 
   {
     name: "Radio La Red",
@@ -81,7 +89,17 @@ export const radioStations: Station[] = [
     isSelected: false,
     isLoading: false,
     isFooterStopped:false,
-
+    isHSL: false,
+  },
+  {
+    name: "Radio 10",
+    frequency: "AM 710",
+    url: 'https://radio10.stweb.tv/radio10/live/playlist.m3u8',
+    image: "./assets/images/radio10.png",
+    isSelected: false,
+    isLoading: false,
+    isFooterStopped:false,
+    isHSL: true,
   }
   
   /* , {
@@ -96,7 +114,7 @@ export const radioStations: Station[] = [
   {
     name: "Radio 10",
     frequency: "AM 710",
-    url: "https://radio10.stweb.tv/radio10/live/l_70_240822023_37965.aac?nimblesessionid=709437582",
+    url: "rtmp://radio10.stweb.tv:1935/radio10/live",
     image: "./assets/images/radio10.webp",
     isSelected: false,
     isLoading: false,
