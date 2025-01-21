@@ -87,6 +87,9 @@ audio {
   }
 }
 
+.station-header{
+  align-items: self-end;
+}
 .station-card {
   mat-card-header {
     
@@ -106,10 +109,7 @@ audio {
   }
 }
 
-.station-header{
-  align-items: center;
-}
-
+ 
 .progress-container {
   height: 4px;  // Altura fija de mat-progress-bar
   margin: 8px 0;
