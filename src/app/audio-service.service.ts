@@ -34,6 +34,7 @@ export class AudioService {
     return {
       src: [radioUrl],
       html5: true,
+      volume: 1,
       format: ['webm', 'mp3'],
       onload: () => {
         this.isLoading.next('');
