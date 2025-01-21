@@ -13,6 +13,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { BehaviorSubject, Observable } from 'rxjs';
 import Hls from 'hls.js';
 import { HslService } from '../hsl.service';
+import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-main',
@@ -26,7 +27,8 @@ import { HslService } from '../hsl.service';
     MatSliderModule,
     CommonModule,
     MatProgressSpinnerModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    DragDropModule
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './main.component.html',
@@ -34,13 +36,35 @@ import { HslService } from '../hsl.service';
 })
 export class MainComponent {
   radioStations =[...radioStations];
+  private readonly STORAGE_KEY = 'radio_stations_order';
 
   constructor(public audioService: AudioService, private hslService: HslService) {
 
 
   }
  
- 
+  ngOnInit(){
+    this.loadStationsOrder();
+  }
+
+  onDrop(event: CdkDragDrop<Station[]>) {
+    moveItemInArray(this.radioStations, event.previousIndex, event.currentIndex);
+    // Guardar nuevo orden
+    const orderIds = this.radioStations.map(station => station.url);
+    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(orderIds));
+  }
+
+  private loadStationsOrder() {
+    const savedOrder = localStorage.getItem(this.STORAGE_KEY);
+    if (savedOrder) {
+      const orderIds = JSON.parse(savedOrder);
+      this.radioStations = orderIds.map((id: string) => 
+        radioStations.find(station => station.url === id)
+      ).filter(Boolean);
+    } else {
+      this.radioStations = [...radioStations];
+    }
+  }
 
   togglePlay(station: Station) {
       

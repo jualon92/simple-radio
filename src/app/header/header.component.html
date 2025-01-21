@@ -1,25 +1,31 @@
- 
 <mat-toolbar>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+  <button mat-icon-button class="toolbar-button" aria-label="Menu">
     <mat-icon>menu</mat-icon>
   </button>
+  
   <span>Simple Radio</span>
   <span class="example-spacer"></span>
- <!--  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon"   [class.favorite]="isFavorite" 
-   (click)="toggleFavorite()">
-    <mat-icon>favorite</mat-icon>
-  </button> -->
-  <button style="margin-bottom: 5px; 
   
-      margin-right: 10px;"  class="mute-button"  [class.muted]="isMuted" mat-icon-button (click)="toggleMute()" aria-label="Toggle mute">
+  <button mat-icon-button 
+         class="toolbar-button mute-button" 
+         [class.muted]="isMuted" 
+         (click)="toggleMute()"
+         aria-label="Toggle mute">
     <mat-icon>{{isMuted ? 'volume_off' : 'volume_up'}}</mat-icon>
   </button>
-  <button mat-icon-button 
-  style="margin-bottom: 5px;"
-  class="close-button"
-  (click)="closeApp()" 
-  aria-label="Cerrar aplicación">
-<mat-icon>close</mat-icon>
-</button>
   
+  <button mat-icon-button 
+         class="toolbar-button drag-hint-icon"
+         (click)="showDragHint()"
+         matTooltip="Mantén presionado para reordenar" 
+         matTooltipPosition="below">
+    <mat-icon>swap_vert</mat-icon>
+  </button>
+  
+  <button mat-icon-button 
+         class="toolbar-button close-button"
+         (click)="closeApp()"
+         aria-label="Cerrar aplicación">
+    <mat-icon>close</mat-icon>
+  </button>
 </mat-toolbar>
