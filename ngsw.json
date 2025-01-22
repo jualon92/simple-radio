@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1737418300882,
+  "timestamp": 1737516292089,
   "index": "/simple-radio/index.html",
   "assetGroups": [
     {
@@ -11,11 +11,11 @@
         "ignoreVary": true
       },
       "urls": [
-        "/simple-radio/chunk-A4P4QPHA.js",
-        "/simple-radio/chunk-IJ7NJKHM.js",
+        "/simple-radio/chunk-JTQDJQLO.js",
+        "/simple-radio/chunk-NG7EGD2O.js",
         "/simple-radio/favicon.ico",
         "/simple-radio/index.html",
-        "/simple-radio/main-AXEYTSJP.js",
+        "/simple-radio/main-OXQBWGKC.js",
         "/simple-radio/manifest.webmanifest",
         "/simple-radio/polyfills-FFHMD2TL.js",
         "/simple-radio/styles-UIPN5QKN.css"
@@ -38,6 +38,7 @@
         "/simple-radio/assets/images/mitre.webp",
         "/simple-radio/assets/images/pop.webp",
         "/simple-radio/assets/images/radio.png",
+        "/simple-radio/assets/images/radio10.png",
         "/simple-radio/assets/images/rivadavia.webp",
         "/simple-radio/icons/icon-144-144.png",
         "/simple-radio/icons/icon-192-192.png",
@@ -59,9 +60,10 @@
     "/simple-radio/assets/images/mitre.webp": "865326b48ab0e0e7a0524f7ea506244b68f5dfcc",
     "/simple-radio/assets/images/pop.webp": "f12f2711d7fcbbca6a075bb2dc6ace178339efd5",
     "/simple-radio/assets/images/radio.png": "8b8ec0c6b19955d87d9742974d96a84ef48bae04",
+    "/simple-radio/assets/images/radio10.png": "ba9ef9cc2e356d39ed5b0a683f8296b165dcaf1e",
     "/simple-radio/assets/images/rivadavia.webp": "848ca8976f6d1bd7faefb95a495bec57a39f2a2e",
-    "/simple-radio/chunk-A4P4QPHA.js": "7615f7e3517c6b2a96246f66bdc13d93875aebc0",
-    "/simple-radio/chunk-IJ7NJKHM.js": "6a09714f288fbf28af715a8c626daf9bed34d977",
+    "/simple-radio/chunk-JTQDJQLO.js": "d0559a46d5ea46eab35d24a6aa3fbc874ff740cf",
+    "/simple-radio/chunk-NG7EGD2O.js": "fe8cdd95d0bc1f027332c777d4f4187c7393c386",
     "/simple-radio/favicon.ico": "3a42a4fe4d311da72564a47c0de6b93ef2da4af1",
     "/simple-radio/icons/icon-144-144.png": "5daf3e2b706b90957810c8c7eefddc1c5a451336",
     "/simple-radio/icons/icon-192-192.png": "237149072d59c9292d06cef1ad1fa1f88eaeac71",
@@ -69,8 +71,8 @@
     "/simple-radio/icons/icon-512-512.png": "ed78e4e26c060f4870bc0859c43c30063da67f4a",
     "/simple-radio/icons/icon-72-72.png": "8b8ec0c6b19955d87d9742974d96a84ef48bae04",
     "/simple-radio/icons/icon-96-96.png": "4dd5d0d7e5caea02ddc9f7fa690c3f7cab6be01c",
-    "/simple-radio/index.html": "257d304c6b86a181d732a8bc8f0f6eff0f7e4617",
-    "/simple-radio/main-AXEYTSJP.js": "eaf45d419dc5cd937abe9cc7443c66e7d80891be",
+    "/simple-radio/index.html": "ea580ffcf7b8939becf2ea0ea0b347b2a0752f10",
+    "/simple-radio/main-OXQBWGKC.js": "9e21ba5ca03c5f42322f21f42434263ce5cb869a",
     "/simple-radio/manifest.webmanifest": "cb76299129c052b5e7a2da0e7b1e803bd668811d",
     "/simple-radio/polyfills-FFHMD2TL.js": "f49b49a155bc7d192db62a4c15d0a612b460a667",
     "/simple-radio/styles-UIPN5QKN.css": "77183a69bae5179288df4e6ec2ef6de88cce7377"
