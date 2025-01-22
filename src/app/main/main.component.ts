@@ -36,6 +36,7 @@ import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-
 })
 export class MainComponent {
   radioStations =[...radioStations];
+  dragDelay: number = 500;
   private readonly STORAGE_KEY = 'radio_stations_order';
 
   constructor(public audioService: AudioService, private hslService: HslService) {
