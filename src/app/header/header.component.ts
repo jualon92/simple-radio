@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -15,16 +15,18 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent  {
+  @Output() menuClick = new EventEmitter<void>();
+
   isMuted = false;
   isFavorite = false;
   showHint = false;
   constructor( private snackBar: MatSnackBar,private audioService: AudioService, private cardsService: CardsService ) {}
 
- 
- 
- 
+
+
+
   showDragHint() {
-     
+
     setTimeout(() => {
       this.snackBar.open('Mantén presionado una tarjeta y arrastrala para reordenar', 'Entendido', {
         duration: 7000,
@@ -33,11 +35,11 @@ export class HeaderComponent  {
         verticalPosition: 'top',
       });
     }, 100);
-     
-  
+
+
   }
 
-  
+
   toggleFavorite() {
     this.isFavorite = !this.isFavorite;
     this.cardsService.toggleFavorite(this.isFavorite);
@@ -47,6 +49,9 @@ export class HeaderComponent  {
     this.audioService.toggleMute(this.isMuted);
   }
 
+  toggleSidenav() {
+    this.menuClick.emit();
+  }
 
   closeApp() {
     window.close();

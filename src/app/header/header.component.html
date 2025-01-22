@@ -1,28 +1,31 @@
 <mat-toolbar>
-  <button mat-icon-button class="toolbar-button" aria-label="Menu">
+  <button mat-icon-button
+          class="toolbar-button"
+          (click)="toggleSidenav()"
+          aria-label="Menu">
     <mat-icon>menu</mat-icon>
   </button>
-  
+
   <span>Simple Radio</span>
   <span class="example-spacer"></span>
-  
-  <button mat-icon-button 
-         class="toolbar-button mute-button" 
-         [class.muted]="isMuted" 
+
+  <button mat-icon-button
+         class="toolbar-button mute-button"
+         [class.muted]="isMuted"
          (click)="toggleMute()"
          aria-label="Toggle mute">
     <mat-icon>{{isMuted ? 'volume_off' : 'volume_up'}}</mat-icon>
   </button>
-  
- <!--  <button mat-icon-button 
+
+ <!--  <button mat-icon-button
          class="toolbar-button drag-hint-icon"
          (click)="showDragHint()"
-         matTooltip="Mantén presionado para reordenar" 
+         matTooltip="Mantén presionado para reordenar"
          matTooltipPosition="below">
     <mat-icon>swap_vert</mat-icon>
   </button> -->
-  
-  <button mat-icon-button 
+
+  <button mat-icon-button
          class="toolbar-button close-button"
          (click)="closeApp()"
          aria-label="Cerrar aplicación">

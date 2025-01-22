@@ -1,61 +1,77 @@
- 
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="over">
+    <mat-nav-list>
+      <a mat-list-item (click)="installPwa()" style="margin-top:2rem;"  *ngIf="installPrompt" >
+        <mat-icon>get_app</mat-icon>
+        <span style="font-size:1.1rem;" class="nav-label">Instalar App</span>
+      </a>
+      <a mat-list-item style="height: auto; white-space: normal; line-height: 1.4; margin-top:2rem;">
+        <mat-icon>touch_app</mat-icon>
+        <span class="nav-label" style="font-size:1rem;white-space: break-spaces; height:auto!important;">Mantén presionado una tarjeta para reordenar radios a tu gusto</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
 
-<mat-list   cdkDropList  (cdkDropListDropped)="onDrop($event)">
-  <mat-list-item     (cdkDragStarted)="onDragStarted()"  [cdkDragStartDelay]="dragDelay"  [cdkDragDisabled]="station.isSelected"  cdkDrag  *ngFor="let station of radioStations" lines="4">
-    <mat-card class="station-card" [class.playing]="station.isSelected" (click)="togglePlay(station)">
-      <mat-card-header class="station-header">
-        <img mat-card-avatar [src]="station.image" [alt]="station.name">
-        <mat-card-title style="white-space: break-spaces;">
-          <h5>{{station.name}} </h5>
-        </mat-card-title>
-        <mat-card-subtitle>
-          <h6>{{station.frequency}}</h6>
-        </mat-card-subtitle>
-        <span *ngIf="station.isSelected" class="live-badge">EN VIVO</span>
+  <mat-sidenav-content>
+    <app-header (menuClick)="sidenav.toggle()"></app-header>
+    <mat-list style="background-color:whitesmoke;"  cdkDropList  (cdkDropListDropped)="onDrop($event)">
+      <mat-list-item     (cdkDragStarted)="onDragStarted()"  [cdkDragStartDelay]="dragDelay"  [cdkDragDisabled]="station.isSelected"  cdkDrag  *ngFor="let station of radioStations" lines="4">
+        <mat-card class="station-card" [class.playing]="station.isSelected" (click)="togglePlay(station)">
+          <mat-card-header class="station-header">
+            <img mat-card-avatar [src]="station.image" [alt]="station.name">
+            <mat-card-title style="white-space: break-spaces;">
+              <h5>{{station.name}} </h5>
+            </mat-card-title>
+            <mat-card-subtitle>
+              <h6>{{station.frequency}}</h6>
+            </mat-card-subtitle>
+            <span *ngIf="station.isSelected" class="live-badge">EN VIVO</span>
 
-      </mat-card-header>
+          </mat-card-header>
 
-      <mat-card-content class="station-content">
-        <div class="station-controls">
-
-
-          <!--
-          <mat-spinner *ngIf="isLoadingRadio && this.currentRadio === station.name"/>  -->
-          <mat-progress-bar
-            [style.visibility]="((audioService.isLoading | async) === station.url ) ? 'visible' : 'hidden'"
-            mode="buffer"></mat-progress-bar>
+          <mat-card-content class="station-content">
+            <div class="station-controls">
 
 
+              <!--
+              <mat-spinner *ngIf="isLoadingRadio && this.currentRadio === station.name"/>  -->
+              <mat-progress-bar
+                [style.visibility]="((audioService.isLoading | async) === station.url ) ? 'visible' : 'hidden'"
+                mode="buffer"></mat-progress-bar>
+
+
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+
+        <div class="player-footer" *ngIf="station.isSelected">
+          <div class="player-info">
+            <img [src]="station.image" [alt]="station.name" class="player-image">
+            <div class="player-details">
+              <h5 style="    white-space: break-spaces;">{{station.name}}</h5>
+              <h6>{{station.frequency}}</h6>
+            </div>
+          </div>
+                    <!-- instead of using isFotterStopped property, prefer using audioService.isPlaying  -->
+
+          <button mat-fab color="primary" (click)="playRadioFromFooter(station)"
+            *ngIf="station.isFooterStopped && ((audioService.isLoading | async) !== station.url )">
+
+            <mat-icon>play_arrow</mat-icon>
+          </button>
+
+          <button mat-fab color="primary" (click)="stopRadioFooter(station)"
+            *ngIf="!station.isFooterStopped && ((audioService.isLoading | async) !== station.url )">
+            <mat-icon>pause</mat-icon>
+          </button>
+          <button mat-fab color="primary"
+            *ngIf="((audioService.isLoading | async) === station.url )">
+            <mat-icon disabled class="rotating-icon">sync</mat-icon>
+          </button>
         </div>
-      </mat-card-content>
-    </mat-card>
-
-
-    <div class="player-footer" *ngIf="station.isSelected">
-      <div class="player-info">
-        <img [src]="station.image" [alt]="station.name" class="player-image">
-        <div class="player-details">
-          <h5 style="    white-space: break-spaces;">{{station.name}}</h5>
-          <h6>{{station.frequency}}</h6>
-        </div>
-      </div>
-              <!-- instead of using isFotterStopped property, prefer using audioService.isPlaying  -->
-
-      <button mat-fab color="primary" (click)="playRadioFromFooter(station)"
-        *ngIf="station.isFooterStopped && ((audioService.isLoading | async) !== station.url )">
- 
-        <mat-icon>play_arrow</mat-icon>
-      </button>
-
-      <button mat-fab color="primary" (click)="stopRadioFooter(station)"
-        *ngIf="!station.isFooterStopped && ((audioService.isLoading | async) !== station.url )">
-        <mat-icon>pause</mat-icon>
-      </button>
-      <button mat-fab color="primary" 
-        *ngIf="((audioService.isLoading | async) === station.url )">
-        <mat-icon disabled class="rotating-icon">sync</mat-icon>
-      </button>
-    </div>
-  </mat-list-item>
-</mat-list>
+      </mat-list-item>
+    </mat-list>
+  </mat-sidenav-content>
+</mat-sidenav-container>
 

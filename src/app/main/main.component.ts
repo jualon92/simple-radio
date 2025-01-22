@@ -10,11 +10,12 @@ import { CommonModule } from '@angular/common';
 import { radioStations, Station } from './radios';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
-import { BehaviorSubject, Observable } from 'rxjs';
-import Hls from 'hls.js';
+ 
 import { HslService } from '../hsl.service';
 import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-main',
@@ -29,7 +30,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     CommonModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
-    DragDropModule
+    DragDropModule,
+    MatSidenavModule,
+    HeaderComponent
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './main.component.html',
@@ -39,14 +42,19 @@ export class MainComponent {
   radioStations =[...radioStations];
   dragDelay: number = 500;
   private readonly STORAGE_KEY = 'radio_stations_order';
+  installPrompt: any = null;
 
   constructor(  private snackBar: MatSnackBar,public audioService: AudioService, private hslService: HslService) {
 
 
   }
- 
+
   ngOnInit(){
     this.loadStationsOrder();
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      this.installPrompt = e;
+    });
   }
 
   onDrop(event: CdkDragDrop<Station[]>) {
@@ -60,7 +68,7 @@ export class MainComponent {
     const savedOrder = localStorage.getItem(this.STORAGE_KEY);
     if (savedOrder) {
       const orderIds = JSON.parse(savedOrder);
-      this.radioStations = orderIds.map((id: string) => 
+      this.radioStations = orderIds.map((id: string) =>
         radioStations.find(station => station.url === id)
       ).filter(Boolean);
     } else {
@@ -69,19 +77,19 @@ export class MainComponent {
   }
 
   togglePlay(station: Station) {
-      
+
 
     this.handleUIChanges(station)
-    
+
     //handle radio play
     this.stopPreviousRadio(station);
     this.playNewRadio(station);
-     
-    
+
+
   }
 
   playNewRadio(station: Station){
-    
+
     const service  =  this.getAudioService(station)
     if (station.isSelected) {
       service.playRadio(station.url);
@@ -94,7 +102,7 @@ export class MainComponent {
   }
   getAudioService(station: Station): AudioService | HslService {
     return station.isHSL ? this.hslService : this.audioService
-    
+
 
   }
 
@@ -122,7 +130,7 @@ export class MainComponent {
 
     this.getAudioService(station).stopRadio(station.url);
   }
-  
+
 
   onDragStarted() {
     this.snackBar.open('Arrastra para reordenar ⬆️ ⬇️', '', {
@@ -131,5 +139,15 @@ export class MainComponent {
       horizontalPosition: 'center',
       verticalPosition: 'top'
     });
+  }
+
+  async installPwa() {
+    if (this.installPrompt) {
+      await this.installPrompt.prompt();
+      const result = await this.installPrompt.userChoice;
+      if (result.outcome === 'accepted') {
+        this.installPrompt = null;
+      }
+    }
   }
 }
