@@ -25,12 +25,14 @@ export class HeaderComponent  {
  
   showDragHint() {
      
+    setTimeout(() => {
       this.snackBar.open('Mantén presionado una tarjeta y arrastrala para reordenar', 'Entendido', {
         duration: 7000,
-        panelClass: ['drag-hint-snackbar', 'shake-animation'],
+        panelClass: ['drag-hint-snackbar', 'shake-animation', 'fade-in'],
         horizontalPosition: 'center',
         verticalPosition: 'top',
       });
+    }, 100);
      
   
   }
