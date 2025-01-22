@@ -14,6 +14,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import Hls from 'hls.js';
 import { HslService } from '../hsl.service';
 import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-main',
@@ -39,7 +40,7 @@ export class MainComponent {
   dragDelay: number = 500;
   private readonly STORAGE_KEY = 'radio_stations_order';
 
-  constructor(public audioService: AudioService, private hslService: HslService) {
+  constructor(  private snackBar: MatSnackBar,public audioService: AudioService, private hslService: HslService) {
 
 
   }
@@ -123,4 +124,12 @@ export class MainComponent {
   }
   
 
+  onDragStarted() {
+    this.snackBar.open('Arrastra para reordenar ⬆️ ⬇️', '', {
+      duration: 2000,
+      panelClass: ['drag-notification'],
+      horizontalPosition: 'center',
+      verticalPosition: 'top'
+    });
+  }
 }

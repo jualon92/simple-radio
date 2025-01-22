@@ -260,3 +260,15 @@ audio {
 .cdk-drag {
   touch-action: pan-y; // Permitir scroll vertical
 }
+
+
+.drag-notification {
+  background: rgba(187, 134, 252, 0.9) !important;
+  color: #000 !important;
+  border-radius: 8px !important;
+  
+  .mat-simple-snackbar {
+    font-size: 16px !important;
+    justify-content: center;
+  }
+}
