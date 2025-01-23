@@ -24,6 +24,7 @@
     "@angular/router": "^18.2.0",
     "@angular/service-worker": "^18.2.0",
     "@types/howler": "^2.2.12",
+    "angularx-qrcode": "^18.0.2",
     "hls.js": "^1.5.19",
     "howler": "^2.2.4",
     "rxjs": "~7.8.0",

@@ -1,0 +1,23 @@
+<div style="text-align:center; display: flex; justify-content: center; align-items: center; height: 80vh;">
+  <mat-card appearance="outlined" style="width:500px">
+    <div class="verification-header">
+      <h2>Usa tu dispositivo móvil para esta app</h2>
+      <p>Esta aplicación está optimizada para dispositivos móviles. </p>
+      <p>Para una mejor experiencia, escanea el QR con tu móvil..</p>
+  
+    </div>
+    
+    <!-- QR Code -->
+    <div class="qr-section">
+      <qrcode style="display: flex
+      ;
+          justify-content: center;" qrdata="https://jualon92.github.io/simple-radio/" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+    </div>
+    
+  
+   <!-- <div class="ion-text-center">
+    <button style="width:168.7px; margin-bottom:1rem" arial-label="continue" (click)="ignoreResponsiveWarning()">SEGUIR DE TODOS MODOS</button>
+  </div> -->
+  </mat-card>
+</div>
+ 

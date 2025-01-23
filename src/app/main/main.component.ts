@@ -16,7 +16,8 @@ import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { HeaderComponent } from '../header/header.component';
-
+import { QRCodeModule } from 'angularx-qrcode';
+import { QrComponent } from '../qr/qr.component';
 @Component({
   selector: 'app-main',
   standalone: true,
@@ -32,7 +33,9 @@ import { HeaderComponent } from '../header/header.component';
     MatProgressBarModule,
     DragDropModule,
     MatSidenavModule,
-    HeaderComponent
+    HeaderComponent,
+ QRCodeModule,
+  QrComponent
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './main.component.html',
@@ -41,6 +44,7 @@ import { HeaderComponent } from '../header/header.component';
 export class MainComponent {
   radioStations =[...radioStations];
   dragDelay: number = 500;
+  isMobile = false;
   private readonly STORAGE_KEY = 'radio_stations_order';
   installPrompt: any = null;
 
@@ -55,6 +59,11 @@ export class MainComponent {
       e.preventDefault();
       this.installPrompt = e;
     });
+
+    
+      //TODO: make it a service
+        this.isMobile = window.innerWidth < 1024;
+     
   }
 
   onDrop(event: CdkDragDrop<Station[]>) {

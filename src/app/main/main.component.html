@@ -1,4 +1,9 @@
-<mat-sidenav-container class="sidenav-container">
+ 
+    <ng-template #mobileView> 
+<mat-sidenav-container class="sidenav-container"  >
+
+
+  
   <mat-sidenav #sidenav mode="over">
     <mat-nav-list>
       <a mat-list-item (click)="installPwa()" style="margin-top:2rem;"  *ngIf="installPrompt" >
@@ -73,5 +78,15 @@
       </mat-list-item>
     </mat-list>
   </mat-sidenav-content>
+ 
 </mat-sidenav-container>
+  </ng-template>
+ 
 
+
+ 
+<ng-container *ngIf="!isMobile; else mobileView"  >  
+ 
+    <app-qr></app-qr>
+  
+  </ng-container>
