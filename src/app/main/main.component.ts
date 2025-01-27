@@ -75,7 +75,7 @@ export class MainComponent {
               const snack = this.snackBar.open(
                 'Nueva versión disponible',
                 'Actualizar',
-                { duration: 8000 }
+                { duration: 0 }
               );
               snack.onAction().subscribe(() => {
                 this.swUpdate.activateUpdate().then(() => location.reload());
