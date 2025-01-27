@@ -59,10 +59,10 @@ export class MainComponent {
   ngOnInit(){
     this.loadStationsOrder();
     this.loadFavoriteStations();
-    /*  window.addEventListener('beforeinstallprompt', (e) => {
+  window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
       this.installPrompt = e;
-    });   */
+    });   
     
          this.cardService.showFavorites.subscribe((isFavorite) => {
           this.radioStations = isFavorite ? this.radioStations.filter(s => s.isFavorite) : [...radioStations];
