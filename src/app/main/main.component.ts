@@ -18,6 +18,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { HeaderComponent } from '../header/header.component';
 import { QRCodeModule } from 'angularx-qrcode';
 import { QrComponent } from '../qr/qr.component';
+import { SwUpdate, VersionReadyEvent } from '@angular/service-worker';
+import { filter } from 'rxjs';
 @Component({
   selector: 'app-main',
   standalone: true,
@@ -48,7 +50,7 @@ export class MainComponent {
   private readonly STORAGE_KEY = 'radio_stations_order';
   installPrompt: any = null;
 
-  constructor(  private snackBar: MatSnackBar,public audioService: AudioService, private hslService: HslService) {
+  constructor( private swUpdate: SwUpdate,  private snackBar: MatSnackBar,public audioService: AudioService, private hslService: HslService) {
 
 
   }
@@ -64,6 +66,22 @@ export class MainComponent {
       //TODO: make it a service
         this.isMobile = window.innerWidth < 1024;
      
+
+
+        if (this.swUpdate.isEnabled) {
+          this.swUpdate.versionUpdates
+            .pipe(filter((evt): evt is VersionReadyEvent => evt.type === 'VERSION_READY'))
+            .subscribe(() => {
+              const snack = this.snackBar.open(
+                'Nueva versión disponible',
+                'Actualizar',
+                { duration: 8000 }
+              );
+              snack.onAction().subscribe(() => {
+                this.swUpdate.activateUpdate().then(() => location.reload());
+              });
+            });
+        }
   }
 
   onDrop(event: CdkDragDrop<Station[]>) {
