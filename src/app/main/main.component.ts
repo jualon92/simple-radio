@@ -20,6 +20,7 @@ import { QRCodeModule } from 'angularx-qrcode';
 import { QrComponent } from '../qr/qr.component';
 import { SwUpdate, VersionReadyEvent } from '@angular/service-worker';
 import { filter } from 'rxjs';
+import { CardsService } from '../cards.service';
 @Component({
   selector: 'app-main',
   standalone: true,
@@ -50,20 +51,23 @@ export class MainComponent {
   private readonly STORAGE_KEY = 'radio_stations_order';
   installPrompt: any = null;
 
-  constructor( private swUpdate: SwUpdate,  private snackBar: MatSnackBar,public audioService: AudioService, private hslService: HslService) {
+  constructor(private cardService: CardsService, private swUpdate: SwUpdate,  private snackBar: MatSnackBar,public audioService: AudioService, private hslService: HslService) {
 
 
   }
 
   ngOnInit(){
     this.loadStationsOrder();
-    /* window.addEventListener('beforeinstallprompt', (e) => {
+    this.loadFavoriteStations();
+    /*  window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
       this.installPrompt = e;
-    }); */
-
+    });   */
     
-       
+         this.cardService.showFavorites.subscribe((isFavorite) => {
+          this.radioStations = isFavorite ? this.radioStations.filter(s => s.isFavorite) : [...radioStations];
+        
+          })
         this.isMobile = window.innerWidth < 1024;
      
 
@@ -89,6 +93,29 @@ export class MainComponent {
     // Guardar nuevo orden
     const orderIds = this.radioStations.map(station => station.url);
     localStorage.setItem(this.STORAGE_KEY, JSON.stringify(orderIds));
+  }
+
+  toggleFavorite(station: Station) {
+    station.isFavorite = !station.isFavorite;
+    //save in ui, use localstorage
+     
+     // Guardar cambios en localStorage
+  const favoriteStations = this.radioStations
+  .filter(s => s.isFavorite)
+  .map(s => s.url);
+
+localStorage.setItem('favoriteStations', JSON.stringify(favoriteStations));
+  }
+
+
+  private loadFavoriteStations() {
+    const savedFavorites = localStorage.getItem('favoriteStations');
+    if (savedFavorites) {
+      const favoriteUrls = JSON.parse(savedFavorites);
+      this.radioStations.forEach(station => {
+        station.isFavorite = favoriteUrls.includes(station.url);
+      });
+    }
   }
 
   private loadStationsOrder() {

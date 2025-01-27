@@ -286,3 +286,22 @@ mat-sidenav {
 .nav-label {
   margin-left: 8px;
 }
+
+
+.favorite-icon{
+ 
+  display: relative;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+
+
+  cursor: pointer;
+  color: #888; /* Inactivo */
+  transition: color 0.3s;
+  
+  &.active {
+    color: greenyellow; /* Activo */
+  }
+}
+ 

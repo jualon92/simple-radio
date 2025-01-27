@@ -23,6 +23,12 @@
       <mat-list-item     (cdkDragStarted)="onDragStarted()"  [cdkDragStartDelay]="dragDelay"  [cdkDragDisabled]="station.isSelected"  cdkDrag  *ngFor="let station of radioStations" lines="4">
         <mat-card class="station-card" [class.playing]="station.isSelected" (click)="togglePlay(station)">
           <mat-card-header class="station-header">
+            <mat-icon
+            class="favorite-icon"
+            (click)="toggleFavorite(station)"
+            [class.active]="station.isFavorite">
+            favorite
+          </mat-icon>
             <img mat-card-avatar [src]="station.image" [alt]="station.name">
             <mat-card-title style="white-space: break-spaces;">
               <h5>{{station.name}} </h5>

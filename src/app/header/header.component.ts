@@ -42,7 +42,23 @@ export class HeaderComponent  {
 
   toggleFavorite() {
     this.isFavorite = !this.isFavorite;
-    this.cardsService.toggleFavorite(this.isFavorite);
+    this.cardsService.toggleFavorite(this.isFavorite);  
+
+    if (this.isFavorite){
+      this.snackBar.open('Mostrando favoritos', 'Entendido', {
+        duration: 3000,
+        panelClass: ['favorite-notification'],
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom',
+      });
+    }else{
+      this.snackBar.open('Mostrando todas las tarjetas', 'Entendido', {
+        duration: 3000,
+        panelClass: ['favorite-notification'],
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom',
+      });
+    }
   }
   toggleMute() {
     this.isMuted = !this.isMuted;

@@ -13,5 +13,8 @@ export class CardsService {
     this.showFavorites.next(isFavorite);
   }
 
+  isFavoriteSelected(){
+    return this.showFavorites.value;
+  }
   
 }
