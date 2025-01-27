@@ -57,13 +57,13 @@ export class MainComponent {
 
   ngOnInit(){
     this.loadStationsOrder();
-    window.addEventListener('beforeinstallprompt', (e) => {
+    /* window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
       this.installPrompt = e;
-    });
+    }); */
 
     
-      //TODO: make it a service
+       
         this.isMobile = window.innerWidth < 1024;
      
 
