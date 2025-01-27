@@ -24,6 +24,18 @@ export class HeaderComponent  {
 
 
 
+  ngOnInit(){
+    this.readFavoriteFromLS();
+  }
+
+
+  readFavoriteFromLS(){
+    const savedFavoriteState = localStorage.getItem('showFavoritesOnly');
+    if (savedFavoriteState) {
+      this.isFavorite = JSON.parse(savedFavoriteState);
+      this.cardsService.toggleFavorite(this.isFavorite);
+    }
+  }
 
   showDragHint() {
 
@@ -42,9 +54,17 @@ export class HeaderComponent  {
 
   toggleFavorite() {
     this.isFavorite = !this.isFavorite;
+    //save favorite is selected in ls
+    localStorage.setItem('showFavoritesOnly', JSON.stringify(this.isFavorite));
+     
+
     this.cardsService.toggleFavorite(this.isFavorite);  
 
-    if (this.isFavorite){
+    this.notifyListFiltered(this.isFavorite);
+  }
+
+  notifyListFiltered(isFavorite:boolean) {
+    if (isFavorite){
       this.snackBar.open('Mostrando favoritos', 'Entendido', {
         duration: 3000,
         panelClass: ['favorite-notification'],
@@ -60,6 +80,7 @@ export class HeaderComponent  {
       });
     }
   }
+  
   toggleMute() {
     this.isMuted = !this.isMuted;
     this.audioService.toggleMute(this.isMuted);
