@@ -21,6 +21,7 @@
     <app-header (menuClick)="sidenav.toggle()"></app-header>
     <mat-list style="background-color:whitesmoke;"  cdkDropList  (cdkDropListDropped)="onDrop($event)">
       <mat-list-item     (cdkDragStarted)="onDragStarted()"  [cdkDragStartDelay]="dragDelay"  [cdkDragDisabled]="station.isSelected"  cdkDrag  *ngFor="let station of radioStations" lines="4">
+      <!-- TODO: should be its own component-->
         <mat-card class="station-card" [class.playing]="station.isSelected" (click)="togglePlay(station)">
           <mat-card-header class="station-header">
             <mat-icon
