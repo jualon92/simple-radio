@@ -84,8 +84,11 @@ export class MainComponent {
                 'Actualizar',
                 { duration: 0 }
               );
+             
               snack.onAction().subscribe(() => {
-                this.swUpdate.activateUpdate().then(() => location.reload());
+                this.swUpdate.activateUpdate().then(() =>{ 
+                  localStorage.clear();
+                  location.reload()});
               });
             });
         }
