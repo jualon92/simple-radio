@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>Selecciona radios a mostrar</h2>
+
+ 
+<mat-dialog-content>
+  <mat-selection-list #favoritesList (selectionChange)="onGroupsChange(favoritesList.selectedOptions.selected)">
+    <mat-list-option *ngFor="let station of stations" 
+                    [selected]="station.isFavorite"
+                    [value]="station"
+                     >
+      <img matListItemAvatar [src]="station.image" [alt]="station.name">
+      <span matListItemTitle>{{station.name}}</span>
+      <span matListItemLine>{{station.frequency}}</span>
+    </mat-list-option>
+  </mat-selection-list>
+
+  
+<mat-dialog-actions align="end">
+  <button mat-button (click)="save()">Guardar</button>
+  <button mat-button mat-dialog-close>Cancelar</button>
+</mat-dialog-actions>
+
+</mat-dialog-content>
+ 
+ 
+ 
+ 
