@@ -50,6 +50,7 @@ export class MainComponent {
   isMobile = false;
   private readonly STORAGE_KEY = 'radio_stations_order';
   installPrompt: any = null;
+  favoriteAll: boolean = false;
 
   constructor(private cardService: CardsService, private swUpdate: SwUpdate,  private snackBar: MatSnackBar,public audioService: AudioService, private hslService: HslService) {
 
@@ -65,6 +66,7 @@ export class MainComponent {
     });   
     
          this.cardService.showFavorites.subscribe((isFavorite) => {
+          this.favoriteAll = isFavorite;
           this.radioStations = isFavorite ? this.radioStations.filter(s => s.isFavorite) : [...radioStations];
         
           })
