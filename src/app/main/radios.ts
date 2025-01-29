@@ -21,7 +21,7 @@ export const radioStations: Station[] = [
     isLoading: false,
     isFooterStopped:false,
     isHSL: false,
-    isFavorite: false,
+    isFavorite: true,
   },
   {
     name: 'Radio Continental',
@@ -32,7 +32,7 @@ export const radioStations: Station[] = [
     isLoading: false,
     isFooterStopped:false,
     isHSL: false,
-    isFavorite: false,
+    isFavorite:true,
   },
   {
     name: 'Radio Mitre',
@@ -43,7 +43,7 @@ export const radioStations: Station[] = [
     isLoading: false,
     isFooterStopped:false,
     isHSL: false,
-    isFavorite: false,
+    isFavorite: true,
   },
   {
     name: "Radio La 100",
@@ -54,7 +54,7 @@ export const radioStations: Station[] = [
     isLoading: false,
     isFooterStopped:false,
     isHSL: false,
-    isFavorite: false,
+    isFavorite: true,
   },
   {
     name: "Radio Pop",
@@ -65,7 +65,7 @@ export const radioStations: Station[] = [
     isLoading: false,
     isFooterStopped:false,
     isHSL: false,
-    isFavorite: false,
+    isFavorite: true,
 
   },{
     name: "Radio Aspen",
@@ -76,7 +76,7 @@ export const radioStations: Station[] = [
     isLoading: false,
     isFooterStopped:false,
     isHSL: false, 
-    isFavorite: false,
+    isFavorite: true,
   },
   {
     name: "Radio Metro",
@@ -87,7 +87,7 @@ export const radioStations: Station[] = [
     isLoading: false,
     isFooterStopped:false,
     isHSL: false,
-    isFavorite: false,
+    isFavorite: true,
   }, 
   {
     name: "Radio La Red",
@@ -98,7 +98,7 @@ export const radioStations: Station[] = [
     isLoading: false,
     isFooterStopped:false,
     isHSL: false,
-    isFavorite: false,
+    isFavorite:true,
   },
   {
     name: "Radio 10",
@@ -109,7 +109,7 @@ export const radioStations: Station[] = [
     isLoading: false,
     isFooterStopped:false,
     isHSL: true,
-    isFavorite: false,
+    isFavorite:true,
   }
   
   /* , {
