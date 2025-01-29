@@ -10,6 +10,12 @@
         <mat-icon>get_app</mat-icon>
         <span style="font-size:1.1rem;" class="nav-label">Instalar App</span>
       </a>
+      <a (click)="showFavoritesDialog()" mat-list-item style="height: auto; white-space: normal; line-height: 1.4; margin-top:2rem;">
+        <mat-icon>favorite</mat-icon>
+        <span class="nav-label" style="font-size:1rem;white-space: break-spaces; height:auto!important;">
+          Elegir que radios mostrar
+        </span>
+      </a>
       <a mat-list-item style="height: auto; white-space: normal; line-height: 1.4; margin-top:2rem;">
         <mat-icon>touch_app</mat-icon>
         <span class="nav-label" style="font-size:1rem;white-space: break-spaces; height:auto!important;">Mantén presionado una tarjeta para reordenar radios a tu gusto</span>
@@ -22,7 +28,8 @@
     <mat-list style="background-color:whitesmoke;"  cdkDropList  (cdkDropListDropped)="onDrop($event)">
       <mat-list-item     (cdkDragStarted)="onDragStarted()"  [cdkDragStartDelay]="dragDelay"  [cdkDragDisabled]="station.isSelected"  cdkDrag  *ngFor="let station of radioStations" lines="4">
       <!-- TODO: should be its own component-->
-        <mat-card class="station-card" [class.playing]="station.isSelected" (click)="togglePlay(station)">
+        <mat-card  *ngIf="station.isFavorite" class="station-card" [class.playing]="station.isSelected" (click)="togglePlay(station)">
+        
           <mat-card-header class="station-header">
            <!--  <mat-icon
             class="favorite-icon"
@@ -85,6 +92,9 @@
         </div>
       </mat-list-item>
     </mat-list>
+
+  
+
   </mat-sidenav-content>
  
 </mat-sidenav-container>

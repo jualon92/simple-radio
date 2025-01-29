@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ElementRef, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, ViewChild } from '@angular/core';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
@@ -21,6 +21,8 @@ import { QrComponent } from '../qr/qr.component';
 import { SwUpdate, VersionReadyEvent } from '@angular/service-worker';
 import { filter } from 'rxjs';
 import { CardsService } from '../cards.service';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { FavoriteModalComponent } from '../favorite-modal/favorite-modal.component';
 @Component({
   selector: 'app-main',
   standalone: true,
@@ -38,7 +40,8 @@ import { CardsService } from '../cards.service';
     MatSidenavModule,
     HeaderComponent,
  QRCodeModule,
-  QrComponent
+  QrComponent,
+  MatDialogModule
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './main.component.html',
@@ -52,7 +55,7 @@ export class MainComponent {
   installPrompt: any = null;
   favoriteAll: boolean = false;
 
-  constructor(private cardService: CardsService, private swUpdate: SwUpdate,  private snackBar: MatSnackBar,public audioService: AudioService, private hslService: HslService) {
+  constructor(private dialog: MatDialog,private cardService: CardsService, private swUpdate: SwUpdate,  private snackBar: MatSnackBar,public audioService: AudioService, private hslService: HslService) {
 
 
   }
@@ -65,11 +68,9 @@ export class MainComponent {
       this.installPrompt = e;
     });   
     
-         this.cardService.showFavorites.subscribe((isFavorite) => {
-         /*  this.favoriteAll = isFavorite;
-          this.radioStations = isFavorite ? this.radioStations.filter(s => s.isFavorite) : [...radioStations];
-         */
-          })
+
+    
+
         this.isMobile = window.innerWidth < 1024;
      
 
@@ -90,6 +91,28 @@ export class MainComponent {
         }
   }
 
+  showFavoritesDialog() {
+    const dialogRef = this.dialog.open(FavoriteModalComponent, {
+      width: '80%',
+      maxWidth: '600px',
+      data: { stations: this.radioStations }
+    });
+
+    dialogRef.afterClosed().subscribe((results: string[]) => {
+        this.radioStations = [...this.radioStations.map(station => ({
+        ...station,
+        isFavorite: results.includes(station.url)
+      }))]
+      
+      this.saveFavorites();  
+    });
+  }
+  
+  saveFavorites(){
+    const favoriteUrls = this.radioStations.filter(s => s.isFavorite).map(s => s.url);
+    localStorage.setItem('favoriteStations', JSON.stringify(favoriteUrls));
+  }
+  
   onDrop(event: CdkDragDrop<Station[]>) {
     moveItemInArray(this.radioStations, event.previousIndex, event.currentIndex);
     // Guardar nuevo orden
@@ -97,19 +120,7 @@ export class MainComponent {
     localStorage.setItem(this.STORAGE_KEY, JSON.stringify(orderIds));
   }
 
-  toggleFavorite(station: Station) {
-    station.isFavorite = !station.isFavorite;
-    //save in ui, use localstorage
-     
-     // Guardar cambios en localStorage
-  const favoriteStations = this.radioStations
-  .filter(s => s.isFavorite)
-  .map(s => s.url);
-
-localStorage.setItem('favoriteStations', JSON.stringify(favoriteStations));
-  }
-
-
+  
   private loadFavoriteStations() {
     const savedFavorites = localStorage.getItem('favoriteStations');
     if (savedFavorites) {
