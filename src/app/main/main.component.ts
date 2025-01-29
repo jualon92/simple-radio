@@ -66,9 +66,9 @@ export class MainComponent {
     });   
     
          this.cardService.showFavorites.subscribe((isFavorite) => {
-          this.favoriteAll = isFavorite;
+         /*  this.favoriteAll = isFavorite;
           this.radioStations = isFavorite ? this.radioStations.filter(s => s.isFavorite) : [...radioStations];
-        
+         */
           })
         this.isMobile = window.innerWidth < 1024;
      

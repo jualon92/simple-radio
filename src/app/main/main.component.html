@@ -24,13 +24,13 @@
       <!-- TODO: should be its own component-->
         <mat-card class="station-card" [class.playing]="station.isSelected" (click)="togglePlay(station)">
           <mat-card-header class="station-header">
-            <mat-icon
+           <!--  <mat-icon
             class="favorite-icon"
-            *ngIf="!favoriteAll"
+            *ngIf="!favoriteAll "
             (click)="toggleFavorite(station)"
             [class.active]="station.isFavorite">
             favorite
-          </mat-icon> 
+          </mat-icon>  -->
             <img mat-card-avatar [src]="station.image" [alt]="station.name">
             <mat-card-title style="white-space: break-spaces;">
               <h5>{{station.name}} </h5>
