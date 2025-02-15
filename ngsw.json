@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1738193624132,
+  "timestamp": 1739611325499,
   "index": "/simple-radio/index.html",
   "assetGroups": [
     {
@@ -73,7 +73,7 @@
     "/simple-radio/icons/icon-96x96.png": "4dd5d0d7e5caea02ddc9f7fa690c3f7cab6be01c",
     "/simple-radio/index.html": "a3bdab7ef42a934ca948ba0a88ecaf6b987ce408",
     "/simple-radio/main-MVS7RE4T.js": "68e6ce5f837ce049500fc8bc90ec9fdb372d8130",
-    "/simple-radio/manifest.webmanifest": "cb76299129c052b5e7a2da0e7b1e803bd668811d",
+    "/simple-radio/manifest.webmanifest": "dc14d6bfd70785d1680df220f610ce85010c0396",
     "/simple-radio/polyfills-FFHMD2TL.js": "f49b49a155bc7d192db62a4c15d0a612b460a667",
     "/simple-radio/styles-UIPN5QKN.css": "77183a69bae5179288df4e6ec2ef6de88cce7377"
   },
