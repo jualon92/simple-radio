@@ -3,9 +3,11 @@
   "short_name": "simple-radio",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
-  "display": "minimal-ui",
+  "display": "standalone",
   "scope": "./",
   "start_url": "./",
+  "id": "jualon92-simple-radio",
+  "description": "radio with no extra hassles",
   "icons": [
     {
       "src": "icons/icon-72x72.png",
