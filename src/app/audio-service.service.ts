@@ -38,6 +38,18 @@ export class AudioService implements AudioStrategy {
       html5: true,
       volume: 1,
       format: ['webm', 'mp3'],
+      onplay: () => {
+        // Update playback state
+        if ('mediaSession' in navigator) {
+          navigator.mediaSession.playbackState = 'playing';
+        }
+      },
+      onpause: () => {
+        // Update playback state
+        if ('mediaSession' in navigator) {
+          navigator.mediaSession.playbackState = 'paused';
+        }
+      },
       onload: () => {
         this.isLoading.next('');
         this.isPlaying.next(radioUrl)
