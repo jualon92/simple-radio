@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1739647404029,
+  "timestamp": 1739679322256,
   "index": "/simple-radio/index.html",
   "assetGroups": [
     {
@@ -15,7 +15,7 @@
         "/simple-radio/chunk-QONOFR3C.js",
         "/simple-radio/favicon.ico",
         "/simple-radio/index.html",
-        "/simple-radio/main-MVS7RE4T.js",
+        "/simple-radio/main-XZLTA2BE.js",
         "/simple-radio/manifest.webmanifest",
         "/simple-radio/polyfills-FFHMD2TL.js",
         "/simple-radio/styles-UIPN5QKN.css"
@@ -73,9 +73,9 @@
     "/simple-radio/icons/icon-512x512.png": "ed78e4e26c060f4870bc0859c43c30063da67f4a",
     "/simple-radio/icons/icon-72x72.png": "8b8ec0c6b19955d87d9742974d96a84ef48bae04",
     "/simple-radio/icons/icon-96x96.png": "4dd5d0d7e5caea02ddc9f7fa690c3f7cab6be01c",
-    "/simple-radio/index.html": "a3bdab7ef42a934ca948ba0a88ecaf6b987ce408",
-    "/simple-radio/main-MVS7RE4T.js": "68e6ce5f837ce049500fc8bc90ec9fdb372d8130",
-    "/simple-radio/manifest.webmanifest": "63ee3f652947ce04146dcb0d2ed813f5348b73d8",
+    "/simple-radio/index.html": "81fc69a405996487effdc047d3a49118e6137b49",
+    "/simple-radio/main-XZLTA2BE.js": "4e6aed79ce024efcda76457d0eaf563d6e806cb0",
+    "/simple-radio/manifest.webmanifest": "4170349ec9b6fe64bf188a66bf3d9e375735dcf8",
     "/simple-radio/polyfills-FFHMD2TL.js": "f49b49a155bc7d192db62a4c15d0a612b460a667",
     "/simple-radio/screenshots/aspen.png": "62df72b3c09ac2fbe6f2dd1e409a53f1c5a08868",
     "/simple-radio/screenshots/options.png": "7b75ef98105a3fab62076923f70144b08d189fd7",
