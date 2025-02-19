@@ -61,6 +61,9 @@ export class MainComponent {
   }
 
   ngOnInit(){
+
+    this.keepAwake();
+
     this.loadStationsOrder();
     this.loadFavoriteStations();
   window.addEventListener('beforeinstallprompt', (e) => {
@@ -94,6 +97,24 @@ export class MainComponent {
         }
   }
 
+
+  keepAwake(){
+    navigator.serviceWorker.ready.then(registration => {
+      setInterval(() => {
+        registration.active?.postMessage({ type: 'keepAlive' });
+      }, 60000); // Every minute
+    });
+    self.addEventListener('message', event => {
+      if (event.data.type === 'keepAlive') {
+        console.log('Service worker is alive');
+      }
+    });
+
+    navigator.locks.request('audio-lock', { mode: 'exclusive' }, async lock => {
+      console.log('Lock acquired');
+    });
+    
+  }
   showFavoritesDialog() {
     const dialogRef = this.dialog.open(FavoriteModalComponent, {
       width: '80%',
